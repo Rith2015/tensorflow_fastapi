@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware  # Import CORS Middleware
 from flowers import flowers
 from pizza import pizza
 import uvicorn
+import os
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -61,4 +62,5 @@ def root():
 
 # Run the app
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 8000))  # Default to 8000 if PORT is not set
+    uvicorn.run(app, host="0.0.0.0", port=port)
